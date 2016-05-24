@@ -100,7 +100,6 @@ loader.addModule('character', 'canvas', 'B', function (canvas, B) {
 	};
 
 	Crow.prototype.draw = function () {
-		console.log(this.x, this.y, this.w, this.h);
 		canvas.drawRectangle(this.x, this.y, this.w, this.h, 'red');
 	};
 
