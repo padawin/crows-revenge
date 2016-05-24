@@ -77,6 +77,7 @@ loader.addModule('character', 'canvas', 'B', function (canvas, B) {
 		this.speed = {x: 0, y: 0};
 		this.state = CROW_STATES.RESTING;
 		this.stamina = this.maxStamina = 30;
+		this.reload = this.maxReload = 50;
 	}
 
 	Crow.prototype.update = function () {
@@ -95,6 +96,14 @@ loader.addModule('character', 'canvas', 'B', function (canvas, B) {
 				this.state = CROW_STATES.RESTING;
 				this.stamina = ~~(Math.random() * this.maxStamina);
 				this.speed.x = 0;
+			}
+			else {
+				this.reload--;
+
+				if (this.reload == 0) {
+					// drop cheese
+					this.reload = this.maxReload;
+				}
 			}
 		}
 	};
