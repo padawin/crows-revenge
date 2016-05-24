@@ -28,6 +28,7 @@ loader.addModule('character', 'canvas', 'B', function (canvas, B) {
 	function Fox () {
 		this.w = 50;
 		this.h = 50;
+		this.x = (canvas.getWidth() - this.w) / 2;
 		this.frame = 0;
 		this.maxFrame = 4;
 		this.tick = 0;
