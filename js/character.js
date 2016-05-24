@@ -1,4 +1,5 @@
-loader.addModule('character', 'canvas', 'B', function (canvas, B) {
+loader.addModule('character', 'canvas', 'B', 'cheeses',
+function (canvas, B, cheeses) {
 	"use strict";
 
 	/**
@@ -101,7 +102,9 @@ loader.addModule('character', 'canvas', 'B', function (canvas, B) {
 				this.reload--;
 
 				if (this.reload == 0) {
-					// drop cheese
+					cheeses.dropCheese(
+						this.x + this.w / 2, this.y + this.h
+					);
 					this.reload = this.maxReload;
 				}
 			}

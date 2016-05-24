@@ -1,6 +1,6 @@
 loader.executeModule('main',
-'B', 'canvas', 'character', 'GUI', 'screenSize',
-function (B, canvas, Character, GUI, screenSize) {
+'B', 'canvas', 'character', 'GUI', 'screenSize', 'cheeses',
+function (B, canvas, Character, GUI, screenSize, cheeses) {
 	"use strict";
 
 	/**
@@ -58,6 +58,7 @@ function (B, canvas, Character, GUI, screenSize) {
 		canvas.clear();
 		crow.draw();
 		fox.draw();
+		cheeses.draw();
 	}
 
 	/**
@@ -75,6 +76,7 @@ function (B, canvas, Character, GUI, screenSize) {
 
 			fox.update();
 			crow.update();
+			cheeses.update();
 			draw();
 		}
 	}
