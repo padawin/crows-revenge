@@ -56,6 +56,7 @@ function (B, canvas, Character, GUI, screenSize) {
 	 */
 	function draw () {
 		canvas.clear();
+		crow.draw();
 		fox.draw();
 	}
 
@@ -73,6 +74,7 @@ function (B, canvas, Character, GUI, screenSize) {
 			timePreviousFrame = now - (delta % interval);
 
 			fox.update();
+			crow.update();
 			draw();
 		}
 	}
@@ -125,6 +127,8 @@ function (B, canvas, Character, GUI, screenSize) {
 		//loadResources(function () {
 			fox = new Character.Fox();
 			fox.y = canvas.getHeight() - fox.h - 50;
+			crow = new Character.Crow();
+			crow.y = 50;
 			initEvents();
 			timePreviousFrame = Date.now();
 
