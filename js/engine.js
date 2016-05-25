@@ -16,6 +16,7 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 		loadingWidth,
 		loadingColor = '#0069b1',
 		lives = 3,
+		grabbedCheeses = 0,
 		state,
 		STATES = {
 			LOST: 0,
@@ -118,6 +119,13 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 			if (lives == 0) {
 				state = STATES.LOST;
 			}
+		});
+
+		/**
+		 * Event fired when a cheese is grabbed
+		 */
+		B.Events.on('cheese_grabbed', null, function (mouseX, mouseY) {
+			grabbedCheeses++;
 		});
 	}
 
