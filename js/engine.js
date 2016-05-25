@@ -113,14 +113,27 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 			fox.draw();
 			cheeses.draw();
 			drawLives();
+			drawScore();
 		}
+	}
+
+	function drawScore () {
+		var context = canvas.getContext(),
+			textWidth, text;
+
+		context.font = '15px Arial';
+		context.fillStyle = 'black';
+		text = grabbedCheeses + ' cheeses grabbed';
+		textWidth = context.measureText(text).width;
+
+		context.fillText(text, canvas.getWidth() - 20 - textWidth, 20);
 	}
 
 	function drawLives () {
 		canvas.getContext().drawImage(
 			livesResources[lives],
 			canvas.getWidth() - livesResources[lives].width - 20,
-			20
+			50
 		);
 	}
 
