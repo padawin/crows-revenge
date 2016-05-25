@@ -14,7 +14,12 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 		interval = 1000 / maxFPS,
 		loadingPadding,
 		loadingWidth,
-		loadingColor = '#0069b1';
+		loadingColor = '#0069b1',
+		state,
+		STATES = {
+			LOST: 0,
+			PLAYING: 1
+		};
 
 	/**
 	 * Method to load the resources needed for the game
@@ -52,19 +57,23 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 	}
 
 	function update () {
-		fox.update();
-		crow.update();
-		cheeses.update(fox);
+		if (state == STATES.PLAYING) {
+			fox.update();
+			crow.update();
+			cheeses.update(fox);
+		}
 	}
 
 	/**
 	 * Main draw method. Draws the sky, the map and its objects
 	 */
 	function draw () {
-		canvas.clear();
-		crow.draw();
-		fox.draw();
-		cheeses.draw();
+		if (state == STATES.PLAYING) {
+			canvas.clear();
+			crow.draw();
+			fox.draw();
+			cheeses.draw();
+		}
 	}
 
 	/**
@@ -138,6 +147,7 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 			initEvents();
 			timePreviousFrame = Date.now();
 
+			state = STATES.PLAYING;
 			mainLoop();
 		//});
 	}
