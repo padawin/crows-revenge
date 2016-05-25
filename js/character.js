@@ -55,6 +55,20 @@ function (canvas, B, cheeses) {
 	};
 
 	/**
+	 * @TODO change to use hitboxes
+	 */
+	Fox.prototype.touchesCheese = function (cheese) {
+		if (cheese.x < this.x + this.w && cheese.x + cheese.w > this.x
+			&& cheese.y < this.y + this.h && cheese.y + cheese.h > this.y
+		) {
+			return true;
+		}
+		else {
+			return null;
+		}
+	};
+
+	/**
 	 * Draw the character in the screen depending to the camera position
 	 */
 	Fox.prototype.draw = function () {
