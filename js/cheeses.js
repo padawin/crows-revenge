@@ -21,7 +21,7 @@ loader.addModule('cheeses', 'canvas', 'B', function (canvas, B) {
 				cheeses[c].y += verticalSpeed;
 				if (cheeses[c].y > canvas.getHeight()) {
 					cheeses.splice(c, 1);
-					B.Events.fire('CHEESE_MISSED');
+					B.Events.fire('cheese_missed');
 					c--;
 				}
 			}
