@@ -21,14 +21,14 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 		STATES = {
 			LOST: 0,
 			PLAYING: 1
-		};
+		},
+		livesResources = [];
 
 	/**
 	 * Method to load the resources needed for the game
 	 */
 	function loadResources (callback) {
-		// sprite + sky, will evolve
-		var nbResources = sprites.nbResources,
+		var nbResources = 3,
 			loaded = 0;
 
 		function onLoadResource () {
@@ -42,7 +42,44 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 		}
 
 		B.Events.fire('resourceloaded', [loaded, nbResources]);
-		sprites.loadResources(onLoadResource);
+		loadLivesResources(onLoadResource);
+	}
+
+	function loadLivesResources (loaded) {
+		var c = document.createElement('canvas'),
+			ctx = c.getContext('2d'),
+			resource,
+			resourceWidth = 100,
+			resourceHeight = 100;
+		c.width = resourceWidth;
+		c.height = resourceHeight;
+		ctx.strokeStyle = 'black';
+		ctx.fillStyle = 'black';
+
+		ctx.beginPath();
+		for (var i = -1; i < 3; i++) {
+			if (i >= 0) {
+				ctx.arc(
+					resourceWidth / 2, resourceHeight / 2,
+					resourceWidth / 2,
+					i * 2 * Math.PI / 3, (i + 1) * 2 * Math.PI / 3,
+					false
+				);
+				ctx.lineTo(resourceWidth / 2, resourceHeight / 2);
+				ctx.stroke();
+				ctx.fill();
+			}
+
+			resource = document.createElement('img');
+			resource.src = c.toDataURL('image/png').replace('image/png', "image/octet-stream");
+			resource.onload = loaded;
+			livesResources.push(resource);
+
+			if (i == -1) {
+				ctx.moveTo(resourceWidth / 2, resourceHeight / 2);
+				ctx.lineTo(resourceWidth, resourceHeight / 2);
+			}
+		}
 	}
 
 	/**
@@ -158,7 +195,7 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 
 		// load all the resources. When they are loaded, prerender the map and
 		// then start the main loop
-		//loadResources(function () {
+		loadResources(function () {
 			fox = new Character.Fox();
 			fox.y = canvas.getHeight() - fox.h - 50;
 			crow = new Character.Crow();
@@ -168,7 +205,7 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 
 			state = STATES.PLAYING;
 			mainLoop();
-		//});
+		});
 	}
 
 
