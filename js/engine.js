@@ -107,8 +107,8 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 	 * Main draw method. Draws the sky, the map and its objects
 	 */
 	function draw () {
+		canvas.clear();
 		if (state == STATES.PLAYING) {
-			canvas.clear();
 			crow.draw();
 			fox.draw();
 			cheeses.draw();
