@@ -112,7 +112,16 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 			crow.draw();
 			fox.draw();
 			cheeses.draw();
+			drawLives();
 		}
+	}
+
+	function drawLives () {
+		canvas.getContext().drawImage(
+			livesResources[lives],
+			canvas.getWidth() - livesResources[lives].width - 20,
+			20
+		);
 	}
 
 	/**
