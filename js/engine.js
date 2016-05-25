@@ -51,6 +51,12 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 		}
 	}
 
+	function update () {
+		fox.update();
+		crow.update();
+		cheeses.update(fox);
+	}
+
 	/**
 	 * Main draw method. Draws the sky, the map and its objects
 	 */
@@ -74,9 +80,7 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 		if (delta > interval) {
 			timePreviousFrame = now - (delta % interval);
 
-			fox.update();
-			crow.update();
-			cheeses.update();
+			update();
 			draw();
 		}
 	}
