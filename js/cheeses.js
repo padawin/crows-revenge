@@ -12,7 +12,7 @@ loader.addModule('cheeses', 'canvas', 'B', function (canvas, B) {
 
 	cheesesModule = {
 		dropCheese: function (x, y) {
-			cheeses.push({x: x, y: y});
+			cheeses.push({x: x, y: y, w: 30, h: 30});
 		},
 
 		update: function (foxCoordinates) {
