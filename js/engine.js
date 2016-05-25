@@ -15,6 +15,7 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 		loadingPadding,
 		loadingWidth,
 		loadingColor = '#0069b1',
+		lives = 3,
 		state,
 		STATES = {
 			LOST: 0,
@@ -107,6 +108,16 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 		 */
 		B.Events.on('click', null, function (mouseX, mouseY) {
 
+		});
+
+		/**
+		 * Event fired when a cheese is missed and touches the floor
+		 */
+		B.Events.on('cheese_missed', null, function (mouseX, mouseY) {
+			lives--;
+			if (lives == 0) {
+				state = STATES.LOST;
+			}
 		});
 	}
 
