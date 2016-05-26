@@ -22,7 +22,8 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 			LOST: 0,
 			PLAYING: 1
 		},
-		livesResources = [];
+		livesResources = [],
+		canvasContext = canvas.getContext();
 
 	/**
 	 * Method to load the resources needed for the game
@@ -118,19 +119,18 @@ function (B, canvas, Character, GUI, screenSize, cheeses) {
 	}
 
 	function drawScore () {
-		var context = canvas.getContext(),
-			textWidth, text;
+		var textWidth, text;
 
-		context.font = '15px Arial';
-		context.fillStyle = 'black';
+		canvasContext.font = '15px Arial';
+		canvasContext.fillStyle = 'black';
 		text = grabbedCheeses + ' cheeses grabbed';
-		textWidth = context.measureText(text).width;
+		textWidth = canvasContext.measureText(text).width;
 
-		context.fillText(text, canvas.getWidth() - 20 - textWidth, 20);
+		canvasContext.fillText(text, canvas.getWidth() - 20 - textWidth, 20);
 	}
 
 	function drawLives () {
-		canvas.getContext().drawImage(
+		canvasContext.drawImage(
 			livesResources[lives],
 			canvas.getWidth() - livesResources[lives].width - 20,
 			50
